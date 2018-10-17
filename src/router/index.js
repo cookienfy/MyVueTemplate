@@ -7,8 +7,15 @@ import Home from '@/views/Home/index'
 import EDI from '@/views/EDI/index'
 import Tables from '@/views/Tables/index'
 import TablesEdit from '@/views/Tables/edit'
+import store from '@/store/index'
 
 Vue.use(Router)
+
+//For when the page refresh reset token to Vuex
+if(sessionStorage.getItem('token'))
+{
+  store.commit('setToken',sessionStorage.getItem('token'))
+}
 
 const router = new Router({
   routes: [
@@ -102,5 +109,6 @@ router.beforeResolve((to, from, next) => {
   to.meta.routeList = routeList
   next()
 })
+
 
 export default router

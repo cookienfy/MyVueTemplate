@@ -50,41 +50,44 @@
 
 <script>
 
-export default {
-  name: 'Index.vue',
-  data () {
-    return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
-    }
-  },
-  methods: {
-    EditRow (row) {
-      this.$router.push({path: '/EDI/Edit'})
-      // this.$route.redirectedFrom('Home')
+  export default {
+    name: 'Index.vue',
+    data () {
+      return {
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }]
+      }
     },
-    RowDetail (row) {
-      console.log(row)
-      console.log(row.name)
-    }
-  }
+    methods: {
+      EditRow (row) {
 
-}
+        this.$store.state.userInfo = {id: 1, name: 'EdwinNie'}
+
+        this.$router.push({path: '/EDI/Edit'})
+        // this.$route.redirectedFrom('Home')
+      },
+      RowDetail (row) {
+        console.log(row)
+        console.log(row.name)
+      }
+    }
+
+  }
 </script>
 
 <style scoped>
