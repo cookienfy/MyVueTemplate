@@ -7,6 +7,7 @@
       <el-input v-model="valueForApi"></el-input>
       <el-button @click="GetVuex()">Vuex Test</el-button>
       <el-button @click="GetToken()">GetToken</el-button>
+      <el-button @click="GetTable()">GetTable</el-button>
     </el-col>
 
   </el-row>
@@ -116,6 +117,22 @@
               message: 'This is a message that can be deleted',
               type: 'success'
             })
+          })
+          .catch(e => {
+            console.log(e)
+          }).finally(() => {
+
+        })
+      },
+      GetTable(){
+
+        this.$http
+          .get('/api/table/5')
+          .then(r => {
+            debugger
+            this.valueForApi = r.data
+            this.btnLoading = false
+
           })
           .catch(e => {
             console.log(e)

@@ -5,13 +5,13 @@
       <el-col :span="24">
         <el-input size="small" placeholder="Name" style="width:180px;margin-left: 10px"></el-input>
         <el-input size="small" placeholder="Name" style="width:180px;margin-left: 10px"></el-input>
-        <el-button size="small" type="primary" plain>Search</el-button>
+        <el-button size="small" type="primary" plain @click="GetData" :loading="loading">Search</el-button>
       </el-col>
 
     </div>
     <el-table
       :data="tableData"
-      element-loading-text="Loading"
+      v-loading="listloading"
       border
       fit
       highlight-current-row
@@ -27,21 +27,23 @@
           <el-button @click="EditRow(scope.row)" type="text" size="small">编辑</el-button>
         </template>
       </el-table-column>
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180"
-        v-if="true">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址">
-      </el-table-column>
+      <el-table-column v-for="col in tableCols" :prop="col.key" :label="col.name" :key="col.key"></el-table-column>
+
+      <!--<el-table-column-->
+      <!--prop="date"-->
+      <!--label="日期"-->
+      <!--width="180"-->
+      <!--v-if="true">-->
+      <!--</el-table-column>-->
+      <!--<el-table-column-->
+      <!--prop="name"-->
+      <!--label="姓名"-->
+      <!--width="180">-->
+      <!--</el-table-column>-->
+      <!--<el-table-column-->
+      <!--prop="address"-->
+      <!--label="地址">-->
+      <!--</el-table-column>-->
     </el-table>
 
   </el-row>
@@ -51,26 +53,12 @@
 <script>
 
   export default {
-    name: 'Index.vue',
+    name: 'EDI',
     data () {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        loading: false,
+        listloading: false,
+        tableCols: []
       }
     },
     methods: {
@@ -84,6 +72,40 @@
       RowDetail (row) {
         console.log(row)
         console.log(row.name)
+      },
+      GetData () {
+        this.loading = true
+        this.listloading = true
+        this.tableData = null
+        setTimeout(() => {
+          this.loading = false
+          this.listloading = false
+
+          this.tableCols = [
+            {'name': '日期11111', 'key': 'date'},
+            {'name': '姓名11111', 'key': 'name'},
+            {'name': '地址11111', 'key': 'address'}
+          ]
+
+          this.tableData = [{
+            date: '2016-05-02',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-04',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1517 弄'
+          }, {
+            date: '2016-05-01',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1519 弄'
+          }, {
+            date: '2016-05-03',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1516 弄'
+          }]
+        }, 5000)
+
       }
     }
 

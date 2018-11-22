@@ -7,14 +7,17 @@
       add tab
     </el-button>
 
-    <el-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">
+    <el-tabs v-model="editableTabsValue2" type="border-card" closable @tab-remove="removeTab">
       <el-tab-pane
         v-for="(item, index) in editableTabs2"
         :key="item.name"
         :label="item.title"
         :name="item.name"
       >
-        {{item.content}}
+        <transition name="fade"
+                    mode="out-in">
+          {{item.content}}
+        </transition>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -42,7 +45,7 @@
         this.editableTabs2.push({
           title: 'New Tab',
           name: newTabName,
-          content: 'New Tab content'
+          content: '<el-button>aaa</el-button>'
         })
         this.editableTabsValue2 = newTabName
       },

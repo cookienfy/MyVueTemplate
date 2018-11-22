@@ -11,35 +11,36 @@
     </el-row>
     <transition name="fade"
                 mode="out-in">
+      <keep-alive>
+        <router-view>
 
-      <router-view>
-
-      </router-view>
+        </router-view>
+      </keep-alive>
     </transition>
   </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      realList: []
-    }
-  },
-  mounted () {
-    this.realList = this.$route.meta.routeList
-  },
-  methods: {
-    getRoutePath () {
+  export default {
+    data () {
+      return {
+        realList: []
+      }
+    },
+    mounted () {
       this.realList = this.$route.meta.routeList
+    },
+    methods: {
+      getRoutePath () {
+        this.realList = this.$route.meta.routeList
+      }
+    },
+    beforeRouteEnter (to, from, next) {
+      next((vm) => {
+        vm.realList = to.meta.routeList
+      })
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next((vm) => {
-      vm.realList = to.meta.routeList
-    })
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -50,7 +51,6 @@ export default {
     margin-left: 230px;
     position: relative;
   }
-
 
   .fade-enter-active, .fade-leave-active {
     transition: opacity .3s;

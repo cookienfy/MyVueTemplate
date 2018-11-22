@@ -12,9 +12,8 @@ import store from '@/store/index'
 Vue.use(Router)
 
 //For when the page refresh reset token to Vuex
-if(sessionStorage.getItem('token'))
-{
-  store.commit('setToken',sessionStorage.getItem('token'))
+if (sessionStorage.getItem('token')) {
+  store.commit('setToken', sessionStorage.getItem('token'))
 }
 
 const router = new Router({
@@ -30,7 +29,7 @@ const router = new Router({
           path: 'Dashboard',
           name: 'Dashboard',
           component: Dashboard,
-          meta: {title: 'index', icon: 'form'}
+          meta: {title: 'index', icon: 'form', noCache: false}
         }
       ]
     }, {
@@ -44,12 +43,12 @@ const router = new Router({
           path: 'index',
           name: 'index',
           component: EDI,
-          meta: {title: 'Index', icon: 'form'}
+          meta: {title: 'Index', icon: 'form', noCache: false}
         }, {
           path: 'Edit',
           name: 'Edit',
           component: Edit,
-          meta: {title: 'Edit', icon: 'form'}
+          meta: {title: 'Edit', icon: 'form', noCache: false}
         }
       ]
     }, {
@@ -63,7 +62,7 @@ const router = new Router({
           path: 'index',
           name: 'index',
           component: Home,
-          meta: {title: 'Index', icon: 'form'}
+          meta: {title: 'Index', icon: 'form', noCache: false}
         }
       ]
     }, {
@@ -77,13 +76,13 @@ const router = new Router({
           path: 'index',
           name: 'index',
           component: Tables,
-          meta: {title: 'Table01', icon: 'form'}
+          meta: {title: 'Table01', icon: 'form', noCache: false}
         }, {
           path: 'Edit',
           name: 'TablesEdit',
-          component:TablesEdit,
+          component: TablesEdit,
           props: true,
-          meta: {title: 'Edit', icon: 'form'}
+          meta: {title: 'Edit', icon: 'form', noCache: false}
         }
       ]
     }

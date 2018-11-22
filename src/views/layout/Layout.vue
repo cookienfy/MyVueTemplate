@@ -8,7 +8,7 @@
     </div>
     <el-container>
       <Header></Header>
-      <Main></Main>
+      <main-container></main-container>
       <el-footer height="30">
         footer
       </el-footer>
@@ -18,22 +18,23 @@
 
 <script>
 
-import Navbar from '@/views/layout/Navbar'
-import Header from '@/views/layout/Header'
-import Main from '@/views/layout/MainContainer'
+  import Navbar from '@/views/layout/Navbar'
+  import Header from '@/views/layout/Header'
+  import MainContainer from '@/views/layout/MainContainer'
 
-export default {
-  data () {
-    return {
-      name: 'Layout'
+  export default {
+    data () {
+      return {
+        name: 'Layout'
+      }
+    },
+    components: {
+      Header,
+      MainContainer,
+      Header,
+      Navbar
     }
-  },
-  components: {
-    Header: Header,
-    Navbar: Navbar,
-    Main: Main
   }
-}
 </script>
 
 <style lang="scss" scoped>

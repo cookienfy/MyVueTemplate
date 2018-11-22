@@ -2,13 +2,13 @@
   <div class="main-container">
     <el-row>
       <el-col :span="24">
-        <el-button
-          size="small"
-          @click="addTab(editableTabsValue2)"
-        >
-          add tab
-        </el-button>
-        <el-tabs v-model="editableTabsValue2" type="card" closable @tab-remove="removeTab">
+        <!--<el-button-->
+        <!--size="small"-->
+        <!--@click="addTab(editableTabsValue2)"-->
+        <!--&gt;-->
+        <!--add tab-->
+        <!--</el-button>-->
+        <el-tabs v-model="editableTabsValue2" closable @tab-remove="removeTab">
           <el-tab-pane
             v-for="(item, index) in editableTabs2"
             :key="item.name"
@@ -17,10 +17,11 @@
 
             <transition name="fade"
                         mode="out-in">
+              <keep-alive :include="cacheViews">
+                <router-view :key="key">
 
-              <router-view>
-
-              </router-view>
+                </router-view>
+              </keep-alive>
             </transition>
 
           </el-tab-pane>
@@ -46,6 +47,14 @@
           content: 'Tab 2 content'
         }],
         tabIndex: 2
+      }
+    },
+    computed: {
+      cacheViews () {
+        return this.$store.state.tagsView.cachedViews
+      },
+      key () {
+        return this.$route.fullPath
       }
     },
     methods: {
@@ -87,7 +96,6 @@
     margin-left: 230px;
     position: relative;
   }
-
 
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
